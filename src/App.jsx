@@ -8,6 +8,7 @@ import RoadMap from "./pages/RoadMap"
 import Login from "./pages/Login";
 function App() {
     return (
+
         <Router>
             <div className="min-h-screen bg-gray-50">
                 <Navbar />
@@ -21,6 +22,8 @@ function App() {
                 </Routes>
             </div>
         </Router>
+
+
     )
 }
 

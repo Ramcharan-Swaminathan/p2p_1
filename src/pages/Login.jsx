@@ -6,7 +6,7 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    let curr_url = "https://operators-cove-landing-menu.trycloudflare.com"
+    let curr_url = "http://localhost:8443"
 
 
 const handleSubmit = (e) => {

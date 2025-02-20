@@ -5,59 +5,247 @@ import { ThumbsUp, MessageSquare, Share2, PlusCircle } from "lucide-react"
 
 export default function RoadMap() {
     const [roadmaps, setRoadmaps] = useState([
+
+    {
+        id: 3,
+            title: "AIML Engineer",
+        description: "Path to becoming an AIML expert",
+        author: "Rajesh Kumar",
+        votes: 156,
+        comments: 28,
+        steps: [
         {
-            id: 1,
-            title: "Full Stack Web Development",
-            description: "Complete roadmap to become a full stack developer",
-            author: "Sarah Johnson",
-            votes: 234,
-            comments: 45,
-            steps: [
-                {
-                    title: "Frontend Fundamentals",
-                    skills: ["HTML", "CSS", "JavaScript"],
-                },
-                {
-                    title: "Frontend Frameworks",
-                    skills: ["React", "Redux", "TypeScript"],
-                },
-                {
-                    title: "Backend Development",
-                    skills: ["Node.js", "Express", "MongoDB"],
-                },
-                {
-                    title: "DevOps & Deployment",
-                    skills: ["Docker", "AWS", "CI/CD"],
-                },
+            title: "Mathematics",
+            skills: ["Linear Algebra", "Calculus", "Statistics"],
+            link: [
+                "https://www.youtube.com/watch?v=F_kx0qLrZ7Q&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                "https://www.youtube.com/watch?v=KbJ4lQrRvQo&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                "https://www.youtube.com/watch?v=uh-xwqWeo2g&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
             ],
         },
         {
-            id: 2,
-            title: "Machine Learning Engineer",
-            description: "Path to becoming a machine learning expert",
-            author: "David Chen",
-            votes: 189,
-            comments: 32,
-            steps: [
-                {
-                    title: "Programming Basics",
-                    skills: ["Python", "NumPy", "Pandas"],
-                },
-                {
-                    title: "Mathematics",
-                    skills: ["Linear Algebra", "Calculus", "Statistics"],
-                },
-                {
-                    title: "ML Fundamentals",
-                    skills: ["Scikit-learn", "TensorFlow", "PyTorch"],
-                },
-                {
-                    title: "Advanced Topics",
-                    skills: ["Deep Learning", "NLP", "Computer Vision"],
-                },
+            title: "Programming Basics",
+            skills: ["Python", "NumPy", "Pandas"],
+            link: [
+                "https://www.youtube.com/watch?v=rfscVS0vtbw&list=PL-osiEiasUDraUy5GKXVJVxOpT0SarIR",
+                "https://www.youtube.com/watch?v=QUT1VHiLxfM&list=PL-osiEiasUDraUy5GKXVJVxOpT0SarIR",
+                "https://www.youtube.com/watch?v=_ZW5jvbwOIg&list=PL-osiEiasUDraUy5GKXVJVxOpT0SarIR",
             ],
         },
-    ])
+        {
+            title: "ML Fundamentals",
+            skills: ["Scikit-learn", "TensorFlow", "PyTorch"],
+            link: [
+                "https://www.youtube.com/watch?v=NcMNbqLLwsA&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                "https://www.youtube.com/watch?v=vOppzHvv28Q&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                "https://www.youtube.com/watch?v=SGSqxrM8PVc&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+            ],
+        },
+        {
+            title: "Deep Learning",
+            skills: ["Convolutional Neural Networks", "Recurrent Neural Networks", "Generative Adversarial Networks"],
+            link: [
+                "https://www.youtube.com/watch?v=FmpDIaiMIeA&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                "https://www.youtube.com/watch?v=6niqTuZLwkQ&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                "https://www.youtube.com/watch?v=5WoItGTWV54&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+            ],
+        },
+    ],
+    },
+
+
+
+    {
+        id: 4,
+        title: "Operating System Expert",
+        description: "Path to becoming an OS expert",
+        author: "John Smith",
+        votes: 142,
+        comments: 25,
+        steps: [
+            {
+                title: "Computer Organization",
+                skills: ["CPU Architecture", "Memory Hierarchy", "Input/Output Systems"],
+                link: [
+                    "https://www.youtube.com/watch?v=1I5ZMMRaPiQ&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                    "https://www.youtube.com/watch?v=l7Rzou2_54o&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                    "https://www.youtube.com/watch?v=Qx6u9WvFvRQ&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                ],
+            },
+            {
+                title: "Process Management",
+                skills: ["Process Scheduling", "Process Synchronization", "Deadlocks"],
+                link: [
+                    "https://www.youtube.com/watch?v=7H9u2ZpF7Qo&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=l7Rzou2_54o&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=Qx6u9WvFvRQ&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                ],
+            },
+            {
+                title: "Memory Management",
+                skills: ["Memory Allocation", "Memory Protection", "Virtual Memory"],
+                link: [
+                    "https://www.youtube.com/watch?v=FmpDIaiMIeA&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=6niqTuZLwkQ&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=5WoItGTWV54&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                ],
+            },
+            {
+                title: "File Systems",
+                skills: ["File System Architecture", "File System Implementation", "File System Security"],
+                link: [
+                    "https://www.youtube.com/watch?v=1I5ZMRRaPiQ&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                    "https://www.youtube.com/watch?v=l7Rzou2_54o&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                    "https://www.youtube.com/watch?v=Qx6u9WvFvRQ&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                ],
+            },
+        ],
+    },
+
+
+    {
+        id: 5,
+        title: "DBMS Expert",
+        description: "Path to becoming a DBMS expert",
+        author: "Jane Doe",
+        votes: 129,
+        comments: 22,
+        steps: [
+            {
+                title: "Database Fundamentals",
+                skills: ["Database Concepts", "Data Modeling", "Database Design"],
+                link: [
+                    "https://www.youtube.com/watch?v=7H9u2ZpF7Qo&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=l7Rzou2_54o&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=Qx6u9WvFvRQ&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                ],
+            },
+            {
+                title: "Relational Database Management Systems",
+                skills: ["SQL", "Database Normalization", "Database Query Optimization"],
+                link: [
+                    "https://www.youtube.com/watch?v=FmpDIaiMIeA&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=6niqTuZLwkQ&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=5WoItGTWV54&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                ],
+            },
+            {
+                title: "NoSQL Database Management Systems",
+                skills: ["MongoDB", "Cassandra", "Redis"],
+                link: [
+                    "https://www.youtube.com/watch?v=1I5ZMRRaPiQ&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                    "https://www.youtube.com/watch?v=l7Rzou2_54o&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                    "https://www.youtube.com/watch?v=Qx6u9WvFvRQ&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                ],
+            },
+            {
+                title: "Database Security and Administration",
+                skills: ["Database Security", "Database Backup and Recovery", "Database Performance Tuning"],
+                link: [
+                    "https://www.youtube.com/watch?v=7H9u2ZpF7Qo&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=l7Rzou2_54o&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=Qx6u9WvFvRQ&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                ],
+            },
+        ],
+    },
+
+    {
+        id: 6,
+        title: "System Design Expert",
+        description: "Path to becoming a system design expert",
+        author: "Bob Johnson",
+        votes: 115,
+        comments: 20,
+        steps: [
+            {
+                title: "System Design Fundamentals",
+                skills: ["System Design Principles", "System Architecture", "System Scalability"],
+                link: [
+                    "https://www.youtube.com/watch?v=FmpDIaiMIeA&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=6niqTuZLwkQ&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=5WoItGTWV54&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                ],
+            },
+            {
+                title: "Microservices Architecture",
+                skills: ["Microservices Design", "Service Discovery", "API Gateway"],
+                link: [
+                    "https://www.youtube.com/watch?v=1I5ZMRRaPiQ&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                    "https://www.youtube.com/watch?v=l7Rzou2_54o&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                    "https://www.youtube.com/watch?v=Qx6u9WvFvRQ&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                ],
+            },
+            {
+                title: "Cloud Computing",
+                skills: ["AWS", "Azure", "Google Cloud Platform"],
+                link: [
+                    "https://www.youtube.com/watch?v=7H9u2ZpF7Qo&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=l7Rzou2_54o&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=Qx6u9WvFvRQ&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                ],
+            },
+            {
+                title: "System Security",
+                skills: ["System Security Fundamentals", "Network Security", "Cryptography"],
+                link: [
+                    "https://www.youtube.com/watch?v=FmpDIaiMIeA&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=6niqTuZLwkQ&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=5WoItGTWV54&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                ],
+            },
+        ],
+    },
+
+
+    {
+        id: 7,
+        title: "Cloud Computing Expert",
+        description: "Path to becoming a cloud computing expert",
+        author: "Alice Brown",
+        votes: 102,
+        comments: 18,
+        steps: [
+            {
+                title: "Cloud Computing Fundamentals",
+                skills: ["Cloud Computing Concepts", "Cloud Service Models", "Cloud Deployment Models"],
+                link: [
+                    "https://www.youtube.com/watch?v=1I5ZMRRaPiQ&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                    "https://www.youtube.com/watch?v=l7Rzou2_54o&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                    "https://www.youtube.com/watch?v=Qx6u9WvFvRQ&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                ],
+            },
+            {
+                title: "AWS Cloud Computing",
+                skills: ["AWS EC2", "AWS S3", "AWS Lambda"],
+                link: [
+                    "https://www.youtube.com/watch?v=7H9u2ZpF7Qo&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=l7Rzou2_54o&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=Qx6u9WvFvRQ&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                ],
+            },
+            {
+                title: "Azure Cloud Computing",
+                skills: ["Azure Virtual Machines", "Azure Storage", "Azure Functions"],
+                link: [
+                    "https://www.youtube.com/watch?v=FmpDIaiMIeA&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=6niqTuZLwkQ&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                    "https://www.youtube.com/watch?v=5WoItGTWV54&list=PLZHQObOWTQDPD3MizzM2xVFitgF50wSJ_",
+                ],
+            },
+            {
+                title: "Google Cloud Platform",
+                skills: ["Google Compute Engine", "Google Cloud Storage", "Google Cloud Functions"],
+                link: [
+                    "https://www.youtube.com/watch?v=1I5ZMRRaPiQ&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                    "https://www.youtube.com/watch?v=l7Rzou2_54o&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                    "https://www.youtube.com/watch?v=Qx6u9WvFvRQ&list=PLZHQObOWTQDNHOJTJXW_svdfdsf",
+                ],
+            },
+        ],
+    },
+
+])
 
     const [showCreateForm, setShowCreateForm] = useState(false)
     const [newRoadmap, setNewRoadmap] = useState({
@@ -96,6 +284,12 @@ export default function RoadMap() {
         setNewRoadmap({ title: "", description: "", steps: [{ title: "", skills: [""] }] })
     }
 
+    const handleUpvote = (roadmap) => {
+        const updatedRoadmaps = roadmaps.map((r) =>
+            r.id === roadmap.id ? { ...r, votes: r.votes + 1 } : r
+        );
+        setRoadmaps(updatedRoadmaps);
+    };
     return (
         <div className="max-w-full min-h-screen mx-auto px-4 sm:px-6 lg:px-8 py-8 text-gray-200 bg-gray-900">
             {/* Header */}
@@ -141,7 +335,10 @@ export default function RoadMap() {
 
                             {/* Interactions */}
                             <div className="flex items-center space-x-6 text-gray-500">
-                                <button className="flex items-center space-x-2 hover:text-cyan-400">
+                                <button
+                                    className="flex items-center space-x-2 hover:text-cyan-400"
+                                    onClick={() => handleUpvote(roadmap)}
+                                >
                                     <ThumbsUp className="w-5 h-5" />
                                     <span>{roadmap.votes}</span>
                                 </button>
@@ -208,19 +405,15 @@ export default function RoadMap() {
                                             {/* Skills */}
                                             <div className="space-y-2">
                                                 {step.skills.map((skill, skillIndex) => (
-                                                    <input
+                                                    <a
                                                         key={skillIndex}
-                                                        type="text"
-                                                        value={skill}
-                                                        onChange={(e) => {
-                                                            const updatedSteps = [...newRoadmap.steps]
-                                                            updatedSteps[stepIndex].skills[skillIndex] = e.target.value
-                                                            setNewRoadmap({ ...newRoadmap, steps: updatedSteps })
-                                                        }}
-                                                        className="w-full px-3 py-2 border rounded-lg bg-gray-600 text-gray-200"
-                                                        placeholder={`Skill ${skillIndex + 1}`}
-                                                        required
-                                                    />
+                                                        href={step.link && step.link[skillIndex] ? step.link[skillIndex] : "#"}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="w-full px-3 py-2 border rounded-lg bg-gray-600 text-gray-200 block hover:bg-gray-500"
+                                                    >
+                                                        {skill}
+                                                    </a>
                                                 ))}
                                                 <button
                                                     type="button"
