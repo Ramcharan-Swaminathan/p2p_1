@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BookOpen, GraduationCap, User } from "lucide-react";
+import {BookOpen, GraduationCap, Star, User} from "lucide-react";
 
 export default function Navbar() {
     return (
@@ -27,6 +27,7 @@ export default function Navbar() {
                             </Link>
                         </div>
                     </div>
+
                     <div className="flex items-center">
                         <Link
                             to="/profile"

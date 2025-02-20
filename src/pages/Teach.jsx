@@ -1,66 +1,99 @@
 "use client"
 
-import { useState } from "react"
-import { PlusCircle, Book, Users, DollarSign, Edit, Trash2 } from "lucide-react"
+import { useState, useEffect } from "react";
+import { PlusCircle, Book, Users, DollarSign, Edit, Trash2, ChevronDown, ChevronUp } from "lucide-react";
 
 export default function Teach() {
-    const [courses, setCourses] = useState([
-        {
-            id: 1,
-            title: "JavaScript Fundamentals",
-            description: "A comprehensive guide to JavaScript basics",
-            students: 150,
-            earnings: 1200,
-            modules: ["Introduction to JavaScript", "Variables and Data Types", "Functions and Scope", "DOM Manipulation"],
-            status: "active",
-        },
-        {
-            id: 2,
-            title: "React for Beginners",
-            description: "Learn React.js from scratch",
-            students: 89,
-            earnings: 890,
-            modules: ["React Basics", "Components", "State and Props", "Hooks"],
-            status: "draft",
-        },
-    ])
-
-    const [showNewCourseForm, setShowNewCourseForm] = useState(false)
+    const [courses, setCourses] = useState([]);
+    const [expandedCourse, setExpandedCourse] = useState(null);
+    const [courseDetails, setCourseDetails] = useState({});
+    const [showNewCourseForm, setShowNewCourseForm] = useState(false);
     const [newCourse, setNewCourse] = useState({
         title: "",
         description: "",
         modules: [""],
-    })
+    });
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const userId = localStorage.getItem("u_id");
+                const response = await fetch(`https://operators-cove-landing-menu.trycloudflare.com/getCoursesTaught?u_id=${userId}`);
+                if (!response.ok) throw new Error(`Error: ${response.status} ${response.statusText}`);
+                const data = await response.json();
+                if (data.status === "E") throw new Error(data.message);
+                setCourses(data.courses_taught.map(course => ({
+                    id: course.course_id,
+                    title: course.course_name,
+                    description: "Description not provided",
+                    students: 0,
+                    earnings: 0,
+                    modules: [],
+                    status: "active",
+                })));
+            } catch (error) {
+                console.error("Failed to fetch courses:", error);
+            }
+        };
+
+        fetchCourses();
+    }, []);
+
+    const fetchCourseDetails = async (courseName) => {
+        try {
+            const response = await fetch(`https://operators-cove-landing-menu.trycloudflare.com/getCoursesByName?course_name=${encodeURIComponent(courseName)}`);
+            if (!response.ok) throw new Error(`Error: ${response.status} ${response.statusText}`);
+            const data = await response.json();
+            if (data.status === "E") throw new Error(data.message);
+            setCourseDetails((prevDetails) => ({
+                ...prevDetails,
+                [courseName]: data.courses[0],
+            }));
+        } catch (error) {
+            console.error("Failed to fetch course details:", error);
+        }
+    };
+
+    const toggleCourseDetails = (courseName) => {
+        if (expandedCourse === courseName) {
+            setExpandedCourse(null);
+        } else {
+            setExpandedCourse(courseName);
+            if (!courseDetails[courseName]) {
+                fetchCourseDetails(courseName);
+            }
+        }
+    };
 
     const handleAddModule = () => {
         setNewCourse({
             ...newCourse,
             modules: [...newCourse.modules, ""],
-        })
-    }
+        });
+    };
 
     const handleModuleChange = (index, value) => {
-        const updatedModules = [...newCourse.modules]
-        updatedModules[index] = value
+        const updatedModules = [...newCourse.modules];
+        updatedModules[index] = value;
         setNewCourse({
             ...newCourse,
             modules: updatedModules,
-        })
-    }
+        });
+    };
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const course = {
             id: courses.length + 1,
             ...newCourse,
             students: 0,
             earnings: 0,
             status: "draft",
-        }
-        setCourses([...courses, course])
-        setShowNewCourseForm(false)
-        setNewCourse({ title: "", description: "", modules: [""] })
-    }
+        };
+        setCourses([...courses, course]);
+        setShowNewCourseForm(false);
+        setNewCourse({ title: "", description: "", modules: [""] });
+    };
 
     return (
         <div className="max-w-full min-h-screen mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-gray-900">
@@ -121,6 +154,23 @@ export default function Teach() {
                                     </div>
                                 ))}
                             </div>
+
+                            <button
+                                onClick={() => toggleCourseDetails(course.title)}
+                                className="flex items-center text-gray-400 mt-4 hover:text-gray-200 focus:outline-none"
+                            >
+                                {expandedCourse === course.title ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                                <span className="ml-2">More Info</span>
+                            </button>
+
+                            {expandedCourse === course.title && courseDetails[course.title] && (
+                                <div className="mt-4 text-gray-400">
+                                    <p><strong>Teacher Name:</strong> {courseDetails[course.title].teacher_name}</p>
+                                    <p><strong>Total Cost:</strong> {courseDetails[course.title].total_cost}</p>
+                                    <p><strong>Ratings:</strong> {courseDetails[course.title].ratings}</p>
+                                    <p><strong>No of Modules:</strong> {courseDetails[course.title].no_of_modules}</p>
+                                </div>
+                            )}
                         </div>
                     </div>
                 ))}
@@ -194,5 +244,5 @@ export default function Teach() {
                 </div>
             )}
         </div>
-    )
+    );
 }

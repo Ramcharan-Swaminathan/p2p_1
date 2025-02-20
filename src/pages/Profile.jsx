@@ -1,45 +1,87 @@
-import { Star, Trophy, BookOpen } from "lucide-react";
+"use client"
+
+import { useState, useEffect } from "react";
+import { Star, Trophy, BookOpen, ChevronDown, ChevronUp } from "lucide-react";
 
 export default function Profile() {
-    const user = {
-        name: "John Doe",
-        reputationStars: 120,
-        pinnedCourses: [
-            { id: 1, name: "React Fundamentals", progress: 75 },
-            { id: 2, name: "Node.js Basics", progress: 60 },
-            { id: 3, name: "Web Development", progress: 90 },
-        ],
-        coursesTeaching: [
-            { id: 1, name: "JavaScript Basics", students: 150 },
-            { id: 2, name: "React Hooks", students: 89 },
-            { id: 3, name: "API Development", students: 120 },
-        ],
+    const [user, setUser] = useState(null);
+    const [expandedCourse, setExpandedCourse] = useState(null);
+    const [courseDetails, setCourseDetails] = useState({});
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchUserDetails = async () => {
+            try {
+                const userId = localStorage.getItem("u_id");
+                const response = await fetch(`https://operators-cove-landing-menu.trycloudflare.com/getUserDetails?u_id=${userId}`);
+                if (!response.ok) throw new Error(`Error: ${response.status} ${response.statusText}`);
+                const data = await response.json();
+                if (data.status === "E") throw new Error(data.message);
+                setUser(data);
+            } catch (err) {
+                setError(err.message);
+            }
+        };
+
+        fetchUserDetails();
+    }, []);
+
+    const fetchCourseDetails = async (courseName) => {
+        try {
+            const response = await fetch(`https://operators-cove-landing-menu.trycloudflare.com/getCoursesByName?course_name=${encodeURIComponent(courseName)}`);
+            if (!response.ok) throw new Error(`Error: ${response.status} ${response.statusText}`);
+            const data = await response.json();
+            if (data.status === "E") throw new Error(data.message);
+            setCourseDetails((prevDetails) => ({
+                ...prevDetails,
+                [courseName]: data.courses[0],
+            }));
+        } catch (err) {
+            setError(err.message);
+        }
     };
 
+    const toggleCourseDetails = (courseName) => {
+        if (expandedCourse === courseName) {
+            setExpandedCourse(null);
+        } else {
+            setExpandedCourse(courseName);
+            fetchCourseDetails(courseName);
+        }
+    };
+
+    // if (error) {
+    //     return <div className="min-h-screen max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-gray-900 text-gray-200">Error: {error}</div>;
+    // }
+
+    if (!user) {
+        return <div className="min-h-screen max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-gray-900 text-gray-200">Loading...</div>;
+    }
+
     return (
-        <div className="min-h-screen max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-gray-900">
+        <div className="min-h-screen max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-gray-900 text-gray-200">
             {/* User Stats */}
             <div className="bg-gray-800 rounded-lg shadow p-6 mb-8">
                 <div className="flex items-center justify-between mb-6">
                     <div>
-                        <h1 className="text-2xl font-bold text-gray-100">{user.name}</h1>
+                        <h1 className="text-2xl font-bold text-gray-100">{user.uname}</h1>
                         <div className="flex items-center mt-2">
                             <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                            <span className="ml-2 text-gray-400">{user.reputationStars} reputation stars</span>
+                            <span className="ml-2 text-gray-400">{user.reputation} reputation stars</span>
                         </div>
                     </div>
                     <Trophy className="w-8 h-8 text-cyan-400" />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {user.pinnedCourses.map((course) => (
-                        <div key={course.id} className="bg-gray-700 rounded-lg p-4">
-                            <h3 className="font-medium text-gray-100">{course.name}</h3>
+                    {user.course_learnt.map((course) => (
+                        <div key={course.course_id} className="bg-gray-700 rounded-lg p-4">
+                            <h3 className="font-medium text-gray-100">{course.course_name}</h3>
                             <div className="mt-2">
                                 <div className="w-full bg-gray-600 rounded-full h-2">
-                                    <div className="bg-cyan-400 rounded-full h-2" style={{ width: `${course.progress}%` }} />
+                                    <div className="bg-cyan-400 rounded-full h-2" style={{ width: `${course.completion}%` }} />
                                 </div>
-                                <span className="text-sm text-gray-400 mt-1">{course.progress}% Complete</span>
+                                <span className="text-sm text-gray-400 mt-1">{course.completion}% Complete</span>
                             </div>
                         </div>
                     ))}
@@ -53,10 +95,25 @@ export default function Profile() {
                     <h2 className="text-xl font-semibold text-gray-100">Courses Teaching</h2>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {user.coursesTeaching.map((course) => (
-                        <div key={course.id} className="border rounded-lg p-4 border-gray-700 bg-gray-700">
-                            <h3 className="font-medium text-gray-100">{course.name}</h3>
-                            <p className="text-sm text-gray-400 mt-1">{course.students} students enrolled</p>
+                    {user.courses_taught.map((course) => (
+                        <div key={course.course_id} className="border rounded-lg p-4 border-gray-700 bg-gray-700">
+                            <div className="flex justify-between items-center">
+                                <h3 className="font-medium text-gray-100">{course.course_name}</h3>
+                                <button
+                                    onClick={() => toggleCourseDetails(course.course_name)}
+                                    className="text-gray-400 hover:text-gray-200 focus:outline-none"
+                                >
+                                    {expandedCourse === course.course_name ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                                </button>
+                            </div>
+                            {expandedCourse === course.course_name && courseDetails[course.course_name] && (
+                                <div className="mt-4 text-gray-400">
+                                    <p><strong>Teacher Name:</strong> {courseDetails[course.course_name].teacher_name}</p>
+                                    <p><strong>Total Cost:</strong> {courseDetails[course.course_name].total_cost}</p>
+                                    <p><strong>Ratings:</strong> {courseDetails[course.course_name].ratings}</p>
+                                    <p><strong>No of Modules:</strong> {courseDetails[course.course_name].no_of_modules}</p>
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>

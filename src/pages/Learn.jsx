@@ -1,10 +1,14 @@
 "use client"
 
 import { useState } from "react"
-import { Search, BookOpen, Clock, Star, ChevronRight } from "lucide-react"
+import { Search, BookOpen, Clock, Star, ChevronRight, ChevronDown } from "lucide-react"
 
 export default function Learn() {
     const [searchQuery, setSearchQuery] = useState("")
+    const [expandedModule, setExpandedModule] = useState(null)
+
+
+
 
     const courses = [
         {
@@ -17,6 +21,7 @@ export default function Learn() {
             rating: 4.8,
             enrolled: 1200,
             modules: ["HTML Basics", "CSS Styling", "JavaScript Fundamentals", "DOM Manipulation"],
+            links: [["https://www.youtube.com/embed/S0EUmPQuEpQ?si=jMfDyfrsJNNyTqbB","https://www.youtube.com/embed/S0EUmPQuEpQ?si=jMfDyfrsJNNyTqbB"], ["link2"], ["https://www.youtube.com/embed/S0EUmPQuEpQ?si=jMfDyfrsJNNyTqbB"], ["link4"]]
         },
         {
             id: 2,
@@ -28,8 +33,8 @@ export default function Learn() {
             rating: 4.9,
             enrolled: 950,
             modules: ["Python Basics", "Data Structures", "Object-Oriented Programming", "File Handling"],
+            links: [["link5"], ["https://www.youtube.com/embed/S0EUmPQuEpQ?si=jMfDyfrsJNNyTqbB"], ["link7"], ["https://www.youtube.com/embed/S0EUmPQuEpQ?si=jMfDyfrsJNNyTqbB"]]
         },
-        // Add more courses as needed
     ]
 
     const filteredCourses = courses.filter((course) => course.title.toLowerCase().includes(searchQuery.toLowerCase()))
@@ -51,11 +56,11 @@ export default function Learn() {
             </div>
 
             {/* Course List */}
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-6 justify-center">
                 {filteredCourses.map((course) => (
                     <div
                         key={course.id}
-                        className="bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                        className="max-w-10/12 bg-gray-800 rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:scale-101"
                     >
                         <div className="p-6">
                             <div className="flex justify-between items-start">
@@ -87,17 +92,48 @@ export default function Learn() {
                                 <h3 className="font-semibold mb-3 text-gray-200">Course Modules</h3>
                                 <div className="space-y-2">
                                     {course.modules.map((module, index) => (
-                                        <div
-                                            key={index}
-                                            className="flex items-center justify-between p-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors"
-                                        >
-                                            <span className="flex items-center text-gray-200">
-                                                <span className="w-6 h-6 flex items-center justify-center bg-cyan-400 text-gray-900 rounded-full mr-3 text-sm">
-                                                    {index + 1}
+                                        <div key={index}>
+                                            {/* Module Button */}
+                                            <div
+                                                className="flex items-center justify-between p-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors cursor-pointer"
+                                                onClick={() =>
+                                                    setExpandedModule(expandedModule === `${course.id}-${index}` ? null : `${course.id}-${index}`)
+                                                }
+                                            >
+                                                <span className="flex items-center text-gray-200 ">
+                                                    <span className="w-6 h-6 flex items-center justify-center bg-cyan-400 text-gray-900 rounded-full mr-3 text-sm">
+                                                        {index + 1}
+                                                    </span>
+                                                    {module}
                                                 </span>
-                                                {module}
-                                            </span>
-                                            <ChevronRight className="w-5 h-5 text-gray-400" />
+                                                {expandedModule === `${course.id}-${index}` ? (
+                                                    <ChevronDown className="w-5 h-5 text-gray-400" />
+                                                ) : (
+                                                    <ChevronRight className="w-5 h-5 text-gray-400" />
+                                                )}
+                                            </div>
+
+                                            {/* Links Dropdown */}
+                                            {expandedModule === `${course.id}-${index}` && (
+                                                <div className="p-3 bg-gray-600 rounded-b-lg text-gray-200">
+                                                    <h4 className="text-sm font-medium mb-2">Resources:</h4>
+                                                    <ul className="space-y-1">
+                                                        {course.links[index].map((link, linkIndex) => (
+                                                            <li key={linkIndex}>
+                                                                <iframe width="560" height="315"
+                                                                        src={link}
+                                                                        title="YouTube video player" frameBorder="0"
+                                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                                        referrerPolicy="strict-origin-when-cross-origin"
+                                                                        allowFullScreen>
+
+                                                                </iframe>
+                                                                <br/>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            )}
                                         </div>
                                     ))}
                                 </div>

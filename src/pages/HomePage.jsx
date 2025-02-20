@@ -71,7 +71,7 @@ export default function HomePage() {
                     <div className="text-center">
                         <h1 className="text-4xl font-bold mb-6">Learn from Peers, Teach Others, Grow Together</h1>
                         <p className="text-xl mb-8">Join our community of learners and teachers to exchange knowledge and skills</p>
-                        <button className="bg-white text-primary font-semibold px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors text-blue-600">
+                        <button className="bg-white text-primary font-semibold px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors text-blue-600" onClick={() => window.location.href = '/login'}>
                             Get Started
                         </button>
                     </div>
@@ -86,7 +86,7 @@ export default function HomePage() {
                         {topCourses.map((course) => (
                             <div
                                 key={course.id}
-                                className="bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                                className="bg-gray-700 rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:scale-105"
                             >
                                 <div className="p-6">
                                     <h3 className="text-xl font-semibold mb-2 text-white">{course.title}</h3>
@@ -109,7 +109,7 @@ export default function HomePage() {
             </div>
 
             {/* Roadmap Section */}
-            <div className="bg-gradient-to-r from-primary to-blue-600 text-white py-20">
+            <div className="bg-gradient-to-r from-black via-violet-700 to-black text-white py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center">
                         <h1 className="text-4xl font-bold mb-6">Personalized Learning Roadmaps</h1>
