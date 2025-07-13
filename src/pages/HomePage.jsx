@@ -66,12 +66,12 @@ export default function HomePage() {
     return (
         <div className="min-h-screen w-full bg-gray-900 text-gray-200">
             {/* Hero Section */}
-            <div className="bg-gradient-to-r from-black via-cyan-400 to-black text-white py-20">
+            <div className="bg-cyan-500 text-white py-20 shadow-lg">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center">
-                        <h1 className="text-4xl font-bold mb-6">Learn from Peers, Teach Others, Grow Together</h1>
-                        <p className="text-xl mb-8">Join our community of learners and teachers to exchange knowledge and skills</p>
-                        <button className="bg-white text-primary font-semibold px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors text-blue-600" onClick={() => window.location.href = '/login'}>
+                        <h1 className="text-5xl font-extrabold mb-6 drop-shadow-lg">Learn from Peers, Teach Others, Grow Together</h1>
+                        <p className="text-2xl mb-8">Join our community of learners and teachers to exchange knowledge and skills</p>
+                        <button className="bg-white text-cyan-600 font-semibold px-8 py-3 rounded-lg hover:bg-cyan-100 transition-colors shadow-md" onClick={() => window.location.href = '/login'}>
                             Get Started
                         </button>
                     </div>
@@ -109,12 +109,12 @@ export default function HomePage() {
             </div>
 
             {/* Roadmap Section */}
-            <div className="bg-gradient-to-r from-black via-violet-700 to-black text-white py-20">
+            <div className="bg-violet-700 text-white py-20 shadow-lg">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center">
-                        <h1 className="text-4xl font-bold mb-6">Personalized Learning Roadmaps</h1>
+                        <h1 className="text-4xl font-bold mb-6 drop-shadow-lg">Personalized Learning Roadmaps</h1>
                         <p className="text-xl mb-8">Get tailored learning paths based on your goals and interests</p>
-                        <button className="bg-white text-primary font-semibold px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors text-blue-600" onClick={() => window.location.href = '/roadmap'}>
+                        <button className="bg-white text-violet-700 font-semibold px-8 py-3 rounded-lg hover:bg-violet-100 transition-colors shadow-md" onClick={() => window.location.href = '/roadmap'}>
                             Go to RoadMap
                         </button>
                     </div>
